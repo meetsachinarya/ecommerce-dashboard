@@ -1,21 +1,25 @@
-import React from 'react';
-import { CartItem as CartItemType } from '../types';
-import { useShop } from '../context/ShopContext';
-import { Trash2, Heart, Plus, Minus } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { CartItem as CartItemType } from "../types";
+import { useShop } from "../context/ShopContext";
+import { Trash2, Heart, Plus, Minus } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface CartItemProps {
   item: CartItemType;
 }
 
+//cart item component that displays product image, name, price, quantity controls, line total, and action buttons for wishlist and remove
+
 export const CartItem: React.FC<CartItemProps> = ({ item }) => {
-  const { updateCartQuantity, removeFromCart, toggleWishlist, isInWishlist } = useShop();
+  const { updateCartQuantity, removeFromCart, toggleWishlist, isInWishlist } =
+    useShop();
   const { product, quantity } = item;
 
   const inWishlist = isInWishlist(product.id);
   const currentPrice = product.discountPrice ?? product.price;
   const lineTotal = currentPrice * quantity;
-  const hasDiscount = product.discountPrice && product.discountPrice < product.price;
+  const hasDiscount =
+    product.discountPrice && product.discountPrice < product.price;
 
   return (
     <div
@@ -42,7 +46,9 @@ export const CartItem: React.FC<CartItemProps> = ({ item }) => {
           <p className="text-xs text-slate-400 mb-1.5">{product.subcategory}</p>
 
           <div className="flex items-baseline gap-2">
-            <span className="text-sm font-bold text-slate-900">${currentPrice.toFixed(2)}</span>
+            <span className="text-sm font-bold text-slate-900">
+              ${currentPrice.toFixed(2)}
+            </span>
             {hasDiscount && (
               <span className="text-xs text-slate-400 line-through">
                 ${product.price.toFixed(2)}
@@ -96,13 +102,13 @@ export const CartItem: React.FC<CartItemProps> = ({ item }) => {
             onClick={() => toggleWishlist(product)}
             className={`p-2 rounded-xl border transition-colors ${
               inWishlist
-                ? 'bg-rose-50 border-rose-200 text-rose-600'
-                : 'bg-white border-slate-200 text-slate-500 hover:text-rose-600 hover:border-rose-200'
+                ? "bg-rose-50 border-rose-200 text-rose-600"
+                : "bg-white border-slate-200 text-slate-500 hover:text-rose-600 hover:border-rose-200"
             }`}
-            title={inWishlist ? 'In your wishlist' : 'Save for later'}
+            title={inWishlist ? "In your wishlist" : "Save for later"}
             aria-label="Save for later"
           >
-            <Heart className={`w-4 h-4 ${inWishlist ? 'fill-rose-500' : ''}`} />
+            <Heart className={`w-4 h-4 ${inWishlist ? "fill-rose-500" : ""}`} />
           </button>
 
           <button
