@@ -1,0 +1,7 @@
+{
+  "name": "E-Commerce User Dashboard",
+  "description": "A modern, responsive e-commerce user dashboard featuring products, categories, cart, wishlist, orders, and profile management.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
